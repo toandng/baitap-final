@@ -1,0 +1,88 @@
+body{
+    background: url('/img/2.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    
+}
+.form-login{
+    width: 600px;
+    margin: 0px auto;
+}
+/* img header */
+.img{
+    position: relative;
+   background: transparent;
+   display: flex;
+  padding: 0px 77px;
+   top: 130px;
+}
+.img img{
+    width: 15%;
+}
+.div{
+    padding: 20px 20px;
+}
+.div p{
+    text-transform: uppercase;
+    color: rgb(3,78,161);
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 2px;
+}
+/* heaeder */
+.header{
+    position: relative;
+}
+.text-header{
+    position: absolute;
+    right: 32%;
+    text-transform: uppercase;
+    font-size: 20px;
+    top: 45%;
+    z-index: 1;
+    text-align: center;
+    margin: 0px auto;
+    color: rgb(3,78,161);
+    font-weight: 700;
+}
+
+.login-header{
+    background: url('');
+    height: 100vh;
+    padding: 200px 0px;
+    position: relative;
+}
+.bg-login{
+    border: 3px solid rgb(113,212,247);
+    width: 500px;
+    border-radius: 5px;
+    height: 450px;
+    margin: 0px auto;
+    padding: 200px 0px;
+}
+.mb-3{
+    text-align: center;
+    width: 300px;
+    margin: 0px auto;
+    position: relative;
+    padding: 20px 0px;
+    
+    
+}
+.form-label {
+    position: absolute;
+    left: 0;
+    top: -10px;
+    outline: none;
+    border: none;
+    font-weight: 600;
+}
+.form-control{
+    outline: none;
+    border: none;
+}
+.btn-primary{
+    position: absolute;
+    right: 43%;
+    
+}
