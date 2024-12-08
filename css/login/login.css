@@ -2,7 +2,6 @@ body{
     background: url('/img/2.png');
     background-size: cover;
     background-repeat: no-repeat;
-    
 }
 .form-login{
     width: 600px;
@@ -13,7 +12,7 @@ body{
     position: relative;
    background: transparent;
    display: flex;
-  padding: 0px 77px;
+    padding: 0px 77px;
    top: 130px;
 }
 .img img{
@@ -48,8 +47,7 @@ body{
 
 .login-header{
     background: url('');
-    height: 100vh;
-    padding: 200px 0px;
+    padding: 100px 0px;
     position: relative;
 }
 .bg-login{

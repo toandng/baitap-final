@@ -1,0 +1,155 @@
+body{
+    margin: auto;
+    box-sizing: border-box;
+    padding: 10px 0px;
+}
+.page-header{
+    width: 100%;
+}
+.header{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.content img{
+    width: 20%;
+}
+.content-text{
+    text-transform: uppercase;
+    color: rgb(3,78,161);
+    font-weight: 700;
+    padding: 20px 10px;
+
+}
+.content {
+    display: flex;
+    width: 50%;
+}
+/* login */
+.login{
+    display:flex ;
+}
+.content-login{
+    padding: 15px 20px;
+}
+.content-login a{
+    text-decoration: none;
+    padding: 0px 10px;
+    color: #000;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.content-search{
+    padding: 10px 20px;
+}
+.content-search input{
+
+    background: transparent;
+    border: none;
+}
+/* list  */
+.list-education{
+    background-color: rgb(12,76,163);
+    padding: 10px 0px;
+    margin: 20px 0px;
+}
+.home{
+    color: #fff;
+    padding: 5px 0px;
+    font-size: 20px;
+}
+.dropdown button{
+    color: #fff;
+    text-transform: uppercase;
+}
+.dropdown button:hover{
+    color: #fff;
+}
+/* Hiển thị menu khi hover vào dropdown */
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* Định dạng các mục menu */
+.dropdown-item {
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #333;
+    display: block;
+}
+
+/* Thêm hiệu ứng hover cho các mục */
+.dropdown-item:hover {
+    background-color: #f1f1f1;
+    color: #000;
+}
+.container{
+    display: flex;
+    justify-content: space-around;
+}
+/* slide */
+.banner {
+    width: 100%;
+    overflow: hidden;
+}
+
+.slide-banner {
+    position: relative;
+    width: 100%;
+}
+
+.list-slide ul {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    transition: transform 0.5s ease-in-out;
+    gap: 20px; /* Khoảng cách giữa các slide */
+}
+
+.list-slide li {
+    min-width: calc(100% - 20px); /* Trừ đi khoảng cách (gap) giữa các slide */
+    flex-shrink: 0;
+}
+
+.list-slide img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+/* list content */
+.col img{
+    width: 100%;
+    text-align: center;
+    padding: 10px 20px;
+}
+.col p{
+    font-size:14px ;
+    font-weight: 600;
+}
+.col ul li{
+    font-size: 14px;
+}
+/* foooter */
+footer{
+    background-color: rgb(59, 133, 237);
+}
+.list-footer{
+    display: flex;
+    justify-content: space-between;
+    gap: 100px;
+    padding: 10px 40px;
+}
+.row{
+    padding: 10px 5 0px;
+}
+.col-p{
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #fff;
+}
+.col-p i{
+    padding: 10px 10px;
+}
