@@ -1,3 +1,31 @@
+document.getElementById('login-btn').addEventListener('click', async function () {
+    const formData = new FormData(document.getElementById('login-form'));
+
+    // Gửi AJAX request
+    try {
+        const response = await fetch('http://127.0.0.1:5500/web/res/page/page.html', {
+            method: 'POST',
+            body: formData,
+        });
+        const result = await response.json();
+
+        if (result.success) {
+            // Đăng nhập thành công
+            alert('Đăng nhập thành công!');
+            window.location.href = '/web/res/page/page.html'; // Điều hướng đến page.html
+        } else {
+            // Hiển thị lỗi
+            document.getElementById('fname-error').textContent = result.errors.fname || '';
+            document.getElementById('fpassword-error').textContent = result.errors.fpassword || '';
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Đã xảy ra lỗi, vui lòng thử lại!');
+    }
+});
+
+
+
 // validation login
 
 function validationForm() {
