@@ -1,11 +1,3 @@
-<IfModule mod_rewrite.c>
-    RewriteEngine On
-    RewriteCond %{REQUEST_METHOD} ^(GET|POST)$ [NC]
-    RewriteRule .* - [L]
-</IfModule>
-<Limit POST>
-    Order Allow,Deny
-    Allow from all
-</Limit>
+
 
 

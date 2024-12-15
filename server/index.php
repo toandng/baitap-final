@@ -1,4 +1,9 @@
 <?php
+// Bật hiển thị lỗi để dễ debug
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
+// Thông tin kết nối cơ sở dữ liệu
 $servername = "localhost";
 $username = "db_final";
 $password = "test123";
@@ -12,9 +17,12 @@ if ($conn->connect_error) {
     die("Kết nối thất bại: " . $conn->connect_error);
 }
 
+// Bắt đầu session
+session_start();
+
 // Lấy dữ liệu từ form login
-$msv_input = isset($_POST['fname']) ? $_POST['fname'] : '';
-$password_input = isset($_POST['fpassword']) ? $_POST['fpassword'] : '';
+$msv_input = isset($_POST['msv']) ? trim($_POST['msv']) : '';
+$password_input = isset($_POST['password']) ? trim($_POST['password']) : '';
 
 // Kiểm tra xem MSV và mật khẩu có được nhập không
 if (empty($msv_input) || empty($password_input)) {
@@ -22,37 +30,49 @@ if (empty($msv_input) || empty($password_input)) {
 }
 
 // Truy vấn để kiểm tra thông tin đăng nhập
-$sql = "SELECT * FROM account WHERE Msv = ? AND Password = ?";
+$sql = "SELECT * FROM accounts WHERE MSV = ? AND Password = ?";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param('ss', $msv_input, $password_input);
+$stmt->bind_param('ss', $msv_input, $password_input); // Bind giá trị msv và password
 $stmt->execute();
 $result = $stmt->get_result();
 
-// Kiểm tra thông tin tài khoản
+// Kiểm tra kết quả
 if ($result->num_rows > 0) {
-    $account = $result->fetch_assoc();
-    $role = $account['role']; // Lấy giá trị role từ cột 'role'
+    $account = $result->fetch_assoc(); // Lấy dữ liệu tài khoản
+    $role = $account['role']; // Lấy vai trò từ cột 'role'
 
-    // Phân quyền
-    if ($role == 0) {
-        // Nếu là admin, chuyển hướng đến trang quản lý admin
-        header("Location: http://localhost/baitap-final/server/category/profilesv.php");
-        exit();
-    } else if ($role == 1) {
-        // Nếu là sinh viên, chuyển hướng đến trang sinh viên
-        header("Location: http://localhost/baitap-final/server/category/student.php");
-        exit();
+    // Lấy thông tin sinh viên từ bảng tbl_sinhvien
+    if ($role == 1) {  // Nếu là sinh viên, lấy thông tin sinh viên từ bảng tbl_sinhvien
+        $sql_student = "SELECT * FROM tbl_sinhvien WHERE MSV = ?";
+        $stmt_student = $conn->prepare($sql_student);
+        $stmt_student->bind_param('s', $msv_input);
+        $stmt_student->execute();
+        $result_student = $stmt_student->get_result();
+
+        if ($result_student->num_rows > 0) {
+            $student = $result_student->fetch_assoc(); // Lấy thông tin sinh viên
+
+            // Lưu thông tin sinh viên vào session
+            $_SESSION['student'] = $student;
+
+            // Sau khi hiển thị thông tin, chuyển hướng đến trang sinh viên
+            header("Location: /baitap-final/server/products/infosv.php");
+            exit();
+        } else {
+            echo "Không tìm thấy thông tin sinh viên.";
+        }
+
+        $stmt_student->close();
     } else {
-        echo "Vai trò không hợp lệ.";
+        header("Location: /baitap-final/server/category/profilesv.php");
+        exit();
     }
 } else {
-    // Nếu đăng nhập thất bại
+    // Đăng nhập thất bại
     echo "Đăng nhập thất bại. Vui lòng kiểm tra lại MSV và mật khẩu.";
 }
 
-// Đóng statement
+// Đóng statement và kết nối
 $stmt->close();
-
-// Đóng kết nối
 $conn->close();
 ?>

@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $msv = $_POST['msv'];
 
         // Truy vấn dữ liệu từ bảng sinh viên dựa vào MSV
-        $sql = "SELECT * FROM tbl_sinhvien WHERE `Mã SV` = ?";
+        $sql = "SELECT * FROM tbl_sinhvien WHERE `MSV` = ?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("s", $msv); // "s" đại diện cho string
         $stmt->execute();
@@ -124,7 +124,7 @@ $conn->close();
                     </thead>
                     <tbody>
                         <tr>
-                            <td><?php echo htmlspecialchars($studentData['Mã SV']); ?></td>
+                            <td><?php echo htmlspecialchars($studentData['MSV']); ?></td>
                             <td><?php echo htmlspecialchars($studentData['Họ lót']); ?></td>
                             <td><?php echo htmlspecialchars($studentData['Tên']); ?></td>
                             <td><?php echo htmlspecialchars($studentData['Mã lớp']); ?></td>

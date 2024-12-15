@@ -24,7 +24,7 @@ if (isset($_GET['MaSV'])) {
     $MaSV = $_GET['MaSV'];
 
     // Câu lệnh SQL để xóa sinh viên
-    $sql = "DELETE FROM tbl_sinhvien WHERE `Mã SV` = '$MaSV'";
+    $sql = "DELETE FROM tbl_sinhvien WHERE `MSV` = '$MaSV'";
 
     if ($conn->query($sql) === TRUE) {
         $error = "Xóa sinh viên thành công!";
@@ -70,7 +70,7 @@ if ($result->num_rows > 0) {
 // Truy vấn sinh viên cần sửa
 if (isset($_GET['edit'])) {
     $MaSV = $_GET['edit'];
-    $sql = "SELECT * FROM tbl_sinhvien WHERE `Mã SV` = '$MaSV'";
+    $sql = "SELECT * FROM tbl_sinhvien WHERE `MSV` = '$MaSV'";
     $result = $conn->query($sql);
     $studentToEdit = $result->fetch_assoc();
 }
@@ -151,7 +151,7 @@ $conn->close();
                             // Duyệt và hiển thị tất cả thông tin sinh viên
                             foreach ($studentData as $student) {
                                 echo "<tr>";
-                                echo "<td>" . htmlspecialchars($student['Mã SV']) . "</td>";
+                                echo "<td>" . htmlspecialchars($student['MSV']) . "</td>";
                                 echo "<td>" . htmlspecialchars($student['Họ lót']) . "</td>";
                                 echo "<td>" . htmlspecialchars($student['Tên']) . "</td>";
                                 echo "<td>" . htmlspecialchars($student['Mã lớp']) . "</td>";
@@ -161,8 +161,8 @@ $conn->close();
                                 echo "<td>" . htmlspecialchars($student['b']) . "</td>";
                                 echo "<td>" . htmlspecialchars($student['c']) . "</td>";
                                 echo "<td>
-                                    <a href='?MaSV=" . $student['Mã SV'] . "' class='btn btn-danger btn-sm' onclick='return confirm(\"Bạn có chắc chắn muốn xóa sinh viên này không?\");'>Xóa</a>
-                                    <a href='fixsv.php?edit=" . $student['Mã SV'] . "' class='btn btn-warning btn-sm'>Sửa</a>
+                                    <a href='?MaSV=" . $student['MSV'] . "' class='btn btn-danger btn-sm' onclick='return confirm(\"Bạn có chắc chắn muốn xóa sinh viên này không?\");'>Xóa</a>
+                                    <a href='fixsv.php?edit=" . $student['MSV'] . "' class='btn btn-warning btn-sm'>Sửa</a>
                                 </td>";
 
                                 echo "</tr>";

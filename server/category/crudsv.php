@@ -23,18 +23,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $b = $_POST['b'];
     $a = $_POST['a'];
 
+    // defeffaul password
+    $defaultPassword = '123456';
     // Câu lệnh SQL để thêm sinh viên vào bảng
-    $sql = "INSERT INTO tbl_sinhvien (`Mã SV`, `Họ lót`, `Tên`, `Mã lớp`, `Điện thoại`, `Email`, `c`, `b`, `a`)
+    $sql = "INSERT INTO tbl_sinhvien (`MSV`, `Họ lót`, `Tên`, `Mã lớp`, `Điện thoại`, `Email`, `c`, `b`, `a`)
             VALUES ('$MaSV', '$Holot', '$name', '$Malop', '$phone', '$email', '$c', '$b', '$a')";
 
+    
     if ($conn->query($sql) === TRUE) {
-        header("Location: http://localhost/baitap-final/server/category/profilesv.php");
-        exit();
+        // Sau khi thêm sinh viên, thêm thông tin vào bảng accounts
+        $sql_accounts = "INSERT INTO accounts (MSV, Password, role) 
+                        VALUES ('$MaSV', '$defaultPassword', 1)";  // Giả sử vai trò là sinh viên (1)
 
+        if ($conn->query($sql_accounts) === TRUE) {
+            // Chuyển hướng đến trang profile sinh viên sau khi thêm thành công
+            header("Location: http://localhost/baitap-final/server/category/profilesv.php");
+            exit();
+        } else {
+            echo "Lỗi khi thêm vào bảng accounts: " . $conn->error;
+        }
     } else {
-        echo "Lỗi: " . $conn->error;
+        echo "Lỗi khi thêm sinh viên vào bảng tbl_sinhvien: " . $conn->error;
     }
 }
+
+    
+
 
 
 // Đóng kết nối
