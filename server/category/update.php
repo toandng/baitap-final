@@ -23,7 +23,7 @@ if (isset($_GET['edit'])) {
     $MaSV = $_GET['edit'];
 
     // Lấy thông tin sinh viên từ cơ sở dữ liệu
-    $sql = "SELECT * FROM tbl_sinhvien WHERE `Mã SV` = '$MaSV'";
+    $sql = "SELECT * FROM tbl_sinhvien WHERE `MSV` = '$MaSV'";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
@@ -46,7 +46,7 @@ if (isset($_POST['update'])) {
     $a = $_POST['a'];
 
     // Cập nhật thông tin vào cơ sở dữ liệu
-    $sql = "UPDATE tbl_sinhvien SET `Họ lót` = '$Holot', `Tên` = '$name', `Mã lớp` = '$Malop', `Điện thoại` = '$phone', `Email` = '$email', `c` = '$c', `b` = '$b', `a` = '$a' WHERE `Mã SV` = '$MaSV'";
+    $sql = "UPDATE tbl_sinhvien SET `Họ lót` = '$Holot', `Tên` = '$name', `Mã lớp` = '$Malop', `Điện thoại` = '$phone', `Email` = '$email', `c` = '$c', `b` = '$b', `a` = '$a' WHERE `MSV` = '$MaSV'";
 
     if ($conn->query($sql) === TRUE) {
         $error = "Cập nhật thông tin sinh viên thành công!";
@@ -87,7 +87,7 @@ $conn->close();
         <?php if ($studentToEdit): ?>
             <!-- Form cập nhật thông tin sinh viên -->
             <form method="POST">
-                <input type="hidden" name="MaSV" value="<?php echo $studentToEdit['Mã SV']; ?>">
+                <input type="hidden" name="MaSV" value="<?php echo $studentToEdit['MSV']; ?>">
 
                 <div class="mb-3">
                     <label for="Holot" class="form-label">Họ lót</label>

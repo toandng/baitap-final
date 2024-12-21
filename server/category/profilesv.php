@@ -87,11 +87,42 @@ $conn->close();
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
+<style>
+    /* Thay đổi màu nền của navbar khi hover */
+.navbar-nav .nav-link:hover {
+    background-color: #007bff;  /* Màu nền khi hover */
+    color: white;  /* Màu chữ khi hover */
+    border-radius: 5px;  /* Bo góc của item khi hover */
+}
+
+/* Thay đổi màu nền của navbar khi mục được chọn (active) */
+.navbar-nav .nav-link.active {
+    background-color: #0056b3;  /* Màu nền khi mục được chọn */
+    color: white;  /* Màu chữ khi mục được chọn */
+    font-weight: bold;  /* Làm chữ đậm khi mục được chọn */
+    border-radius: 5px;  /* Bo góc của item khi active */
+}
+
+/* Thêm màu khi mục được focus */
+.navbar-nav .nav-link:focus {
+    background-color: #0056b3;  /* Màu nền khi focus */
+    color: white;  /* Màu chữ khi focus */
+    border-radius: 5px;  /* Bo góc khi focus */
+}
+
+/* Thay đổi màu nền của navbar khi di chuột lên logo hoặc tên menu */
+.navbar-light .navbar-brand:hover {
+    color: #007bff;  /* Màu chữ của tên khi hover */
+}
+</style>
 <body>
     <!-- Thanh Header -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Quản Lý Sinh Viên</a>
+            <a class="navbar-brand" href="">Quản Lý Sinh Viên</a>
+            <div class="d-flex">
+                <a href="http://localhost/baitap-final/server/login.php" class="btn btn-outline-light">Đăng Xuất</a>
+            </div>
         </div>
     </nav>
 
@@ -111,6 +142,12 @@ $conn->close();
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="http://localhost/baitap-final/server/category/student.php">Tra cứu sinh viên</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="http://localhost/baitap-final/server/category/major.php">Lớp chuyên nghành</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="http://localhost/baitap-final/server/category/section.php">Lớp học phần</a>
                             </li>
                         </ul>
                     </div>
@@ -162,7 +199,7 @@ $conn->close();
                                 echo "<td>" . htmlspecialchars($student['c']) . "</td>";
                                 echo "<td>
                                     <a href='?MaSV=" . $student['MSV'] . "' class='btn btn-danger btn-sm' onclick='return confirm(\"Bạn có chắc chắn muốn xóa sinh viên này không?\");'>Xóa</a>
-                                    <a href='fixsv.php?edit=" . $student['MSV'] . "' class='btn btn-warning btn-sm'>Sửa</a>
+                                    <a href='update.php?edit=" . $student['MSV'] . "' class='btn btn-warning btn-sm'>Sửa</a>
                                 </td>";
 
                                 echo "</tr>";
@@ -179,3 +216,20 @@ $conn->close();
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    // Lấy URL hiện tại
+    const currentUrl = window.location.href;
+
+    // Lặp qua tất cả các liên kết trong menu
+    document.querySelectorAll('.nav-link').forEach(link => {
+        // Kiểm tra nếu URL của liên kết trùng với URL hiện tại
+        if (currentUrl.includes(link.href)) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
+});
+
+</script>
