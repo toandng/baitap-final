@@ -10,23 +10,24 @@ session_start();
 if (isset($_SESSION['student'])) {
     $student = $_SESSION['student']; // Lấy thông tin sinh viên từ session
     
-    $average = ($student['a'] + $student['b'] + $student['c']) /3;
+    $average = ($student['a'] + $student['b'] + $student['c']) / 3;
     $rank = '';
 
-    if($average >= 8) {
-        $rank = "Xuất xắc";
-    }elseif($average >= 7.0){
+    if ($average >= 8) {
+        $rank = "Xuất sắc";
+    } elseif ($average >= 7.0) {
         $rank = "Khá";
-    }elseif($average >= 5.0){
-        $rank = "Khá";
-    }else{
+    } elseif ($average >= 5.0) {
         $rank = "Trung bình";
+    } else {
+        $rank = "Yếu";
     }
 
     // Hiển thị thông tin sinh viên và các chức năng
     echo "
     <html>
         <head>
+            <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css' rel='stylesheet'>
             <style>
                 body {
                     font-family: Arial, sans-serif;
@@ -34,29 +35,36 @@ if (isset($_SESSION['student'])) {
                     color: #333;
                     margin: 0;
                     padding: 0;
-                    display: flex;
-                    height: 100vh;
                 }
 
                 .sidebar {
-                    width: 250px;
-                    background-color: #4CAF50;
-                    color: white;
-                    padding: 20px;
-                    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+                    width: 300px;
                     height: 100%;
                     position: fixed;
                     top: 0;
+                    left: -341px;
+                    background-color: #34495e;
+                    color: white;
+                    padding: 20px;
+                    transition: left 0.3s ease;
+                    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+                }
+
+                .sidebar.active {
                     left: 0;
                 }
 
                 .sidebar h3 {
-                    margin-top: 0;
+                    margin: 0;
+                    font-size: 20px;
+                    padding-bottom: 15px;
+                    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
                 }
 
                 .sidebar ul {
                     list-style-type: none;
                     padding: 0;
+                    margin: 20px 0;
                 }
 
                 .sidebar ul li {
@@ -68,26 +76,56 @@ if (isset($_SESSION['student'])) {
                     text-decoration: none;
                     display: block;
                     padding: 10px;
-                    background-color: #66bb6a;
                     border-radius: 5px;
+                    background-color: #2ecc71;
+                    transition: background-color 0.3s ease;
                 }
 
                 .sidebar ul li a:hover {
-                    background-color: #43a047;
+                    background-color: #27ae60;
+                }
+
+                .close-btn {
+                    position: absolute;
+                    top: 10px;
+                    right: 15px;
+                    cursor: pointer;
+                    font-size: 20px;
+                    background: none;
+                    border: none;
+                    color: white;
+                }
+
+                .toggle-btn {
+                    position: fixed;
+                    top: 0px;
+                    left: 15px;
+
+                    cursor: pointer;
+                    background-color: #34495e;
+                    color: white;
+                    padding: 10px 15px;
+                    border: none;
+                    border-radius: 5px;
+                    font-size: 18px;
+                }
+
+                .toggle-btn:hover {
+                    background-color: #2c3e50;
                 }
 
                 .content {
-                    margin-left: 270px;
+                    margin-left: 0;
+                    transition: margin-left 0.3s ease;
                     padding: 20px;
-                    flex-grow: 1;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
+                }
+
+                .content.active {
+                    margin-left: 300px;
                 }
 
                 .container {
-                    width: 80%;
-                    margin: 20px;
+                    margin: 20px auto;
                     background-color: #fff;
                     padding: 30px;
                     border-radius: 10px;
@@ -96,7 +134,7 @@ if (isset($_SESSION['student'])) {
 
                 h2 {
                     text-align: center;
-                    color: #4CAF50;
+                    color: #34495e;
                 }
 
                 table {
@@ -113,7 +151,7 @@ if (isset($_SESSION['student'])) {
                 }
 
                 th {
-                    background-color: #4CAF50;
+                    background-color: #34495e;
                     color: white;
                 }
 
@@ -124,16 +162,15 @@ if (isset($_SESSION['student'])) {
                 tr:hover {
                     background-color: #ddd;
                 }
-
-                .footer {
-                    text-align: center;
-                    margin-top: 20px;
-                    font-size: 14px;
-                    color: #888;
-                }
             </style>
             <script>
-                function showSection(sectionId) {
+                function toggleSidebar() {
+                    const sidebar = document.querySelector('.sidebar');
+                    const content = document.querySelector('.content');
+                    sidebar.classList.toggle('active');
+                    content.classList.toggle('active');
+                }
+                    function showSection(sectionId) {
                     // Ẩn tất cả các section
                     document.getElementById('student-info').style.display = 'none';
                     document.getElementById('subject-scores').style.display = 'none';
@@ -144,7 +181,9 @@ if (isset($_SESSION['student'])) {
             </script>
         </head>
         <body>
+            <button class='toggle-btn' onclick='toggleSidebar()'><i class='fas fa-bars'></i> </button>
             <div class='sidebar'>
+                <button class='close-btn' onclick='toggleSidebar()'><i class='fas fa-times'></i></button>
                 <h3>Chức năng</h3>
                 <ul>
                     <li><a href='javascript:void(0)' onclick=\"showSection('student-info')\">Thông tin sinh viên</a></li>
@@ -188,7 +227,7 @@ if (isset($_SESSION['student'])) {
                                 <th>Điểm A</th>
                                 <th>Điểm B</th>
                                 <th>Điểm C</th>
-                                <th>Xếp loại học lực </th>
+                                <th>Xếp loại học lực</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -196,7 +235,7 @@ if (isset($_SESSION['student'])) {
                                 <td>" . htmlspecialchars($student['a']) . "</td>
                                 <td>" . htmlspecialchars($student['b']) . "</td>
                                 <td>" . htmlspecialchars($student['c']) . "</td>
-                                <td>".$rank."</td>
+                                <td>" . htmlspecialchars($rank) . "</td>
                             </tr>
                         </tbody>
                     </table>

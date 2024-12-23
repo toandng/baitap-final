@@ -9,13 +9,19 @@
         body {
             background-color: #f7f7f7;
             font-family: Arial, sans-serif;
+
         }
         .form-login {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background: linear-gradient(to right, #6a11cb, #2575fc);
+            width: 100%;
+            height: 100vh;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center center;
+            background-image: linear-gradient(rgba(64, 6, 97, 0.4), rgba(64, 6, 97, 0.4)), url(img/image.png);
         }
         .login-header {
             background-color: #fff;
@@ -77,18 +83,19 @@
     <div class="form-login">
         <form class="login-header" id="loginForm" action="index.php" name="myForm" method="POST">
             <div class="div">
-                <p>Trường đại học mỏ-địa chất</p> 
-                <p style="font-size: 14px; font-weight: 600;">Ha Noi University of Mining and Geology</p>
+                <img src="img/1.png" alt="Logo" style="width: 80px; height: auto; margin-bottom: 10px; float: left;">
+                <p style = "font-size: 16px; font-weight:700; padding:5px 0px; margin-top:5px">Trường đại học mỏ-địa chất</p> 
+                <p style="font-size: 14px; font-weight: 600; opacity: 0.8; padding:0px 0px 2px 0px">Ha Noi University of Mining and Geology</p>
             </div>
             <h2 class="text-header">Đăng nhập hệ thống</h2>
             <div class="bg-login">
                 <div class="mb-3">
-                    <label for="msv" class="form-label">MSV</label>
+                    <label for="msv" class="form-label" style="float: left;">MSV</label>
                     <input type="text" name="msv" class="form-control" id="msv" required>
                     <div id="msv-error" class="text-danger mt-1"></div>
                 </div>
                 <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
+                    <label for="password" class="form-label" style="float: left;">Password</label>
                     <input type="password" name="password" class="form-control" id="password" required>
                     <div id="password-error" class="text-danger mt-1"></div>
                 </div>
