@@ -77,12 +77,12 @@ if (isset($_SESSION['student'])) {
                     display: block;
                     padding: 10px;
                     border-radius: 5px;
-                    background-color: #2ecc71;
+                    background-color:rgb(68, 96, 139);
                     transition: background-color 0.3s ease;
                 }
 
                 .sidebar ul li a:hover {
-                    background-color: #27ae60;
+                    background-color:rgb(12, 92, 158);
                 }
 
                 .close-btn {

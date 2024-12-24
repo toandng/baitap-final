@@ -56,43 +56,41 @@ $conn->close();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <style>
-    /* Màu nền của navbar */
-.navbar-light {
-    background-color: #f8f9fa;  /* Màu nền nhẹ cho navbar */
-}
+     body{
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+        background-image: linear-gradient(rgba(64, 6, 97, 0.4), rgba(64, 6, 97, 0.4));
+        height: 100vh;
 
-/* Màu chữ của menu items khi hover */
+    }
+    tbody{
+        color: #fff;
+    }
+    /* Thay đổi màu nền của navbar khi hover */
 .navbar-nav .nav-link:hover {
-    background-color: #007bff;  /* Màu nền khi hover */
-    color: white;  /* Màu chữ khi hover */
-    border-radius: 5px;  /* Bo góc khi hover */
-    transition: background-color 0.3s ease;  /* Hiệu ứng chuyển màu mượt mà */
+    background-color:rgb(20, 148, 157); 
+    color: white; 
+    border-radius: 5px; 
 }
 
-/* Màu nền của menu item khi nó đang active (được chọn) */
 .navbar-nav .nav-link.active {
-    background-color: #0056b3;  /* Màu nền khi chọn */
-    color: white;  /* Màu chữ khi chọn */
-    font-weight: bold;  /* Làm chữ đậm khi chọn */
-    border-radius: 5px;  /* Bo góc khi active */
+    background-color:rgb(41, 152, 172);  
+    color: white;  
+    font-weight: bold;  
+    border-radius: 5px;  
 }
 
-/* Màu chữ của logo khi hover */
+
+.navbar-nav .nav-link:focus {
+    background-color:rgb(13, 131, 158); 
+    color: white;  
+    border-radius: 5px;  
+}
+
+
 .navbar-light .navbar-brand:hover {
-    color: #007bff;  /* Màu chữ của tên khi hover */
-}
-
-/* Hiệu ứng màu cho các mục menu */
-.navbar-nav .nav-item {
-    margin-bottom: 10px; /* Khoảng cách giữa các mục menu */
-}
-
-/* Đảm bảo các liên kết có padding hợp lý */
-.navbar-nav .nav-link {
-    padding: 10px 15px;
-    font-size: 16px;
-}
-
+    color:rgb(9, 151, 125);  }
 </style>
 <body>
     <!-- Thanh Header -->
@@ -128,6 +126,9 @@ $conn->close();
                         <li class="nav-item">
                             <a class="nav-link" href="http://localhost/baitap-final/server/category/section.php">Lớp học phần</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://localhost/baitap-final/server/category/static.php">Thống kê</a>
+                        </li>
                     </ul>
                 </div>
             </nav>
@@ -140,7 +141,7 @@ $conn->close();
             <!-- Form nhập Mã lớp -->
             <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="mt-4">
                 <div class="mb-3">
-                    <label for="msv" class="form-label">Mã lớp</label>
+                    <label for="msv" class="form-label">Mã lớp chuyên ngành</label>
                     <input type="text" name="msv" id="msv" class="form-control" value="<?php echo isset($msv) ? htmlspecialchars($msv) : ''; ?>" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Tìm Kiếm</button>

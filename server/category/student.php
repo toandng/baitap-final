@@ -56,32 +56,40 @@ $conn->close();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <style>
+     body{
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+        background-image: linear-gradient(rgba(64, 6, 97, 0.4), rgba(64, 6, 97, 0.4));
+        height: 100vh;
+    }
+    tbody{
+        color: #fff;
+    }
     /* Thay đổi màu nền của navbar khi hover */
 .navbar-nav .nav-link:hover {
-    background-color: #007bff;  /* Màu nền khi hover */
-    color: white;  /* Màu chữ khi hover */
-    border-radius: 5px;  /* Bo góc của item khi hover */
+    background-color:rgb(20, 148, 157); 
+    color: white; 
+    border-radius: 5px; 
 }
 
-/* Thay đổi màu nền của navbar khi mục được chọn (active) */
 .navbar-nav .nav-link.active {
-    background-color: #0056b3;  /* Màu nền khi mục được chọn */
-    color: white;  /* Màu chữ khi mục được chọn */
-    font-weight: bold;  /* Làm chữ đậm khi mục được chọn */
-    border-radius: 5px;  /* Bo góc của item khi active */
+    background-color:rgb(41, 152, 172);  
+    color: white;  
+    font-weight: bold;  
+    border-radius: 5px;  
 }
 
-/* Thêm màu khi mục được focus */
+
 .navbar-nav .nav-link:focus {
-    background-color: #0056b3;  /* Màu nền khi focus */
-    color: white;  /* Màu chữ khi focus */
-    border-radius: 5px;  /* Bo góc khi focus */
+    background-color:rgb(13, 131, 158); 
+    color: white;  
+    border-radius: 5px;  
 }
 
-/* Thay đổi màu nền của navbar khi di chuột lên logo hoặc tên menu */
+
 .navbar-light .navbar-brand:hover {
-    color: #007bff;  /* Màu chữ của tên khi hover */
-}
+    color:rgb(9, 151, 125);  }
 </style>
 
 
@@ -118,6 +126,9 @@ $conn->close();
                             </li>
                         <li class="nav-item">
                             <a class="nav-link" href="http://localhost/baitap-final/server/category/section.php">Lớp học phần</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://localhost/baitap-final/server/category/static.php">Thống kê</a>
                         </li>
                     </ul>
                 </div>
