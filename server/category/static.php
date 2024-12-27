@@ -106,6 +106,11 @@ $conn->close();
 
 .navbar-light .navbar-brand:hover {
     color:rgb(9, 151, 125);  }
+    .btn-primary{
+    width: 11%;
+    height: 40px;
+    margin-top: 40px;
+}
 </style>
 
 
@@ -119,13 +124,17 @@ $conn->close();
         </div>
     </nav>
     <div class="container mt-4">
-        <div class="col-md-3">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light flex-column">
-                <a class="navbar-brand" href="#">Menu</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
+    <button class="btn btn-primary mb-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu" aria-controls="offcanvasMenu">
+                    Menu
+            </button>
+
+            <!-- Offcanvas menu -->
+            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasMenuLabel">Menu</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
                     <ul class="navbar-nav flex-column">
                         <li class="nav-item">
                             <a class="nav-link active" href="http://localhost/baitap-final/server/category/profilesv.php">Danh Sách Sinh Viên</a>
@@ -144,8 +153,7 @@ $conn->close();
                         </li>
                     </ul>
                 </div>
-            </nav>    
-        </div> 
+            </div>
         <div id="piechart" style="width: 900px; height: 500px; margin: auto;"></div>
     </div>
    

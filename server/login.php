@@ -1,3 +1,50 @@
+<?php
+session_start();
+
+// Kết nối tới MySQL
+$servername = "localhost";
+$username = "db_final";
+$password = "test123";
+$dbname = "baitap-final";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Kiểm tra kết nối
+if ($conn->connect_error) {
+    die("Kết nối thất bại: " . $conn->connect_error);
+}
+
+// Xử lý đăng nhập
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $MSV = $_POST['MSV'];
+    $user_password = $_POST['password'];
+
+    // Truy vấn kiểm tra MSV và mật khẩu trong bảng accounts
+    $sql_student = "SELECT * FROM tbl_sinhvien WHERE MSV = ?";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+
+        // Kiểm tra mật khẩu
+        if (password_verify($user_password, $row['password'])) {
+            // Lưu thông tin người dùng vào session
+            $_SESSION['user_id'] = $MSV;
+            header("Location: http://localhost/baitap-final/server/category/profilesv.php"); // Chuyển hướng về trang quản lý sinh viên
+            exit();
+        } else {
+            // Mật khẩu sai
+            echo "<script>alert('Mật khẩu không đúng!');</script>";
+        }
+    } else {
+        // Mã sinh viên không tồn tại
+        echo "<script>alert('Mã sinh viên không tồn tại!');</script>";
+    }
+}
+
+$conn->close();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

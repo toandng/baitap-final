@@ -5,7 +5,6 @@ error_reporting(E_ALL);
 
 // Bắt đầu session để lấy thông tin sinh viên
 session_start();
-
 // Kiểm tra xem thông tin sinh viên có trong session không
 if (isset($_SESSION['student'])) {
     $student = $_SESSION['student']; // Lấy thông tin sinh viên từ session
